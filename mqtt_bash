@@ -11,9 +11,12 @@ while true  # Keep an infinite loop to reconnect when connection lost/broker una
 do
     mosquitto_sub -h "192.168.1.2" -t "tecnocousaspc" -P $senha -u $usuario | while read -r payload
     do
-        # Here is the callback to execute whenever you receive a message:
-#        echo "Rx MQTT: ${payload}"
-        ${payload}
+	case "$payload" in
+        programa1) echo $payload
+           ;;
+        programa2) echo $payload
+           ;;
+        esac
     done
     sleep 10  # Wait 10 seconds until reconnection
     
